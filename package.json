@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build --webpack",
     "start": "NO_UPDATE_CHECK=1 serve out --no-clipboard",
     "lint": "eslint",
     "test": "bun test tests/quiz.test.ts",
@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.63.0",
-    "@tailwindcss/postcss": "^4",
+    "@tailwindcss/postcss": "4.1.14",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
@@ -35,10 +35,13 @@
     "eslint-config-next": "16.3.4",
     "prettier": "^3.9.6",
     "serve": "^14.2.6",
-    "tailwindcss": "^4",
+    "tailwindcss": "4.1.14",
     "typescript": "^5"
   },
   "packageManager": "bun@1.4.0",
+  "engines": {
+    "node": ">=20.9.0"
+  },
   "ignoreScripts": [
     "sharp",
     "unrs-resolver"

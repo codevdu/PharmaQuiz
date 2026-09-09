@@ -20,6 +20,8 @@ bun run start
 
 O build gera a pasta `out/`, pronta para hospedagem estática. `start` apenas serve esses arquivos para pré-visualização. Não há backend, API Routes, banco de dados, autenticação ou chamadas a serviços externos. As fontes Geist também são locais.
 
+Na Vercel, `vercel.json` fixa o Bun 1.4.0 durante instalação e build, usa o lockfile em modo congelado e publica a pasta `out/`. O build de produção usa Webpack para evitar uma incompatibilidade do parser CSS do Turbopack observada no ambiente Linux da Vercel.
+
 ## Funcionalidades
 
 - 40 questões em 12 categorias, com quatro alternativas e explicações.

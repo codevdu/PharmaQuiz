@@ -11,16 +11,16 @@ bun dev
 
 Acesse http://localhost:3000.
 
-## Produção estática
+## Produção
 
 ```bash
 bun run build
 bun run start
 ```
 
-O build gera a pasta `out/`, pronta para hospedagem estática. `start` apenas serve esses arquivos para pré-visualização. Não há backend, API Routes, banco de dados, autenticação ou chamadas a serviços externos. As fontes Geist também são locais.
+O build gera a pasta `.next/` no formato esperado pelo adaptador oficial de Next.js da Vercel. `start` executa a pré-visualização local do build. Não há backend, API Routes, banco de dados, autenticação ou chamadas a serviços externos. A página continua sendo pré-renderizada como conteúdo estático e as fontes Geist são locais.
 
-Na Vercel, `vercel.json` fixa o Bun 1.4.0 durante instalação e build, usa o lockfile em modo congelado e publica a pasta `out/`. O build de produção usa Webpack para evitar uma incompatibilidade do parser CSS do Turbopack observada no ambiente Linux da Vercel.
+Na Vercel, `vercel.json` fixa o Bun 1.4.0 durante instalação e build e usa o lockfile em modo congelado. O build de produção usa Webpack para evitar uma incompatibilidade do parser CSS do Turbopack observada no ambiente Linux da Vercel. A pasta de saída não é sobrescrita, permitindo que a integração encontre arquivos como `.next/routes-manifest.json`.
 
 ## Funcionalidades
 
@@ -77,6 +77,6 @@ bun run build
 bun run test:e2e
 ```
 
-Os testes E2E usam Microsoft Edge instalado (`channel: "msedge"`) e a exportação estática na porta 3100. Em ambientes sem Edge, instale Chromium com `bunx playwright install chromium` e remova `channel` de `playwright.config.ts`.
+Os testes E2E usam Microsoft Edge instalado (`channel: "msedge"`) e o servidor de produção do Next.js na porta 3100. Em ambientes sem Edge, instale Chromium com `bunx playwright install chromium` e remova `channel` de `playwright.config.ts`.
 
 A cobertura inclui integridade das 40 questões, preservação dos dados originais, resposta correta após embaralhamento, limites dos filtros, tentativas sem repetição quando possível, bloqueio após confirmação, resultados, revisão, navegação mobile e ausência de requisições externas no navegador.

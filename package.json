@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build --webpack",
-    "start": "NO_UPDATE_CHECK=1 serve out --no-clipboard",
+    "start": "next start",
     "lint": "eslint",
     "test": "bun test tests/quiz.test.ts",
     "test:e2e": "playwright test",
@@ -34,7 +34,6 @@
     "eslint": "^9",
     "eslint-config-next": "16.3.4",
     "prettier": "^3.9.6",
-    "serve": "^14.2.6",
     "tailwindcss": "4.1.14",
     "typescript": "^5"
   },

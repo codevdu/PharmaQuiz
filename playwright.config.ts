@@ -13,11 +13,9 @@ export default defineConfig({
     screenshot: "only-on-failure",
   },
   webServer: {
-    command:
-      "node node_modules/serve/build/main.js out --listen 3100 --no-clipboard",
+    command: "bun run start -- -p 3100",
     url: "http://localhost:3100",
     reuseExistingServer: !process.env.CI,
     timeout: 30000,
-    env: { NO_UPDATE_CHECK: "1" },
   },
 });

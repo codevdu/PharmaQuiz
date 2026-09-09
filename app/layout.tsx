@@ -6,7 +6,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "BioQuiz — Bioquímica aplicada à Farmácia",
   description:
-    "Revise Bioquímica com 40 questões, explicações e quizzes personalizados para estudantes de Farmácia.",
+    "Revise Bioquímica com 90 questões, explicações e quizzes personalizados para estudantes de Farmácia.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

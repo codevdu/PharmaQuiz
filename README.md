@@ -24,7 +24,7 @@ Na Vercel, `vercel.json` fixa o Bun 1.4.0 durante instalação e build e usa o l
 
 ## Funcionalidades
 
-- 40 questões em 12 categorias, com quatro alternativas e explicações.
+- 90 questões em 12 categorias, com quatro alternativas e explicações.
 - Sessão padrão de 10 questões; seletor de 5, 10, 15 ou 20, limitado ao conjunto disponível.
 - Filtros principais e acesso às 12 categorias por “Ver todos os 12 temas”. Metabolismo reúne metabolismo energético, glicólise, ciclo de Krebs e cadeia respiratória.
 - Embaralhamento Fisher–Yates de perguntas e alternativas apenas ao iniciar ou refazer o quiz.
@@ -55,7 +55,8 @@ src/
       quiz-feedback.tsx
       quiz-result.tsx
       quiz-review.tsx
-  data/questions.ts         Banco local e filtros
+  data/questions.ts         Banco local combinado e filtros
+  data/additional-questions.ts  50 questões adicionais
   lib/shuffle.ts            Embaralhamento e seleção da sessão
   lib/utils.ts              Composição de classes CSS
   types/quiz.ts             Question, QuizAnswer e QuizStatus
@@ -66,7 +67,7 @@ src/
 
 ## Adicionar questões
 
-Edite `src/data/questions.ts`. Cada pergunta tem ID único, categoria, enunciado, alternativas com IDs estáveis, `correctOptionId` e explicação. A função auxiliar `question()` converte o registro de alternativas no tipo `Question`; o argumento `correctOptionId` identifica explicitamente a alternativa correta, independentemente de sua posição. Não use índices para validar respostas.
+Edite `src/data/questions.ts` ou `src/data/additional-questions.ts`. Cada pergunta tem ID único, categoria, enunciado, alternativas com IDs estáveis, `correctOptionId` e explicação. A função auxiliar `question()` converte o registro de alternativas no tipo `Question`; o argumento `correctOptionId` identifica explicitamente a alternativa correta, independentemente de sua posição. Não use índices para validar respostas.
 
 ## Verificação
 
@@ -79,4 +80,4 @@ bun run test:e2e
 
 Os testes E2E usam Microsoft Edge instalado (`channel: "msedge"`) e o servidor de produção do Next.js na porta 3100. Em ambientes sem Edge, instale Chromium com `bunx playwright install chromium` e remova `channel` de `playwright.config.ts`.
 
-A cobertura inclui integridade das 40 questões, preservação dos dados originais, resposta correta após embaralhamento, limites dos filtros, tentativas sem repetição quando possível, bloqueio após confirmação, resultados, revisão, navegação mobile e ausência de requisições externas no navegador.
+A cobertura inclui integridade das 90 questões, preservação dos dados originais, resposta correta após embaralhamento, limites dos filtros, tentativas sem repetição quando possível, bloqueio após confirmação, resultados, revisão, navegação mobile e ausência de requisições externas no navegador.

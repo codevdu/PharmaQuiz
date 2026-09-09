@@ -1,4 +1,5 @@
 import type { Question } from "@/src/types/quiz";
+import { additionalQuestions } from "./additional-questions";
 
 // IDs are stable: neither question order nor option order identifies the answer.
 function question(
@@ -19,7 +20,7 @@ function question(
   };
 }
 
-export const questions: Question[] = [
+const baseQuestions: Question[] = [
   question(
     "fund-1",
     "Fundamentos",
@@ -531,6 +532,8 @@ export const questions: Question[] = [
     "A acetilcolinesterase hidrolisa a acetilcolina. Sua inibição aumenta a disponibilidade desse neurotransmissor nas sinapses colinérgicas. O exemplo mostra como a modulação de uma enzima pode alterar a comunicação celular.",
   ),
 ];
+
+export const questions: Question[] = [...baseQuestions, ...additionalQuestions];
 
 export const categoryFilters = [
   "Todas",

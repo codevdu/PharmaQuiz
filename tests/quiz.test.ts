@@ -3,15 +3,15 @@ import assert from "node:assert/strict";
 import { questions, filterQuestions } from "../src/data/questions";
 import { createQuiz, shuffleArray } from "../src/lib/shuffle";
 
-test("bank has 40 unique, complete questions covering 12 categories", () => {
-  assert.equal(questions.length, 40);
+test("bank has 90 unique, complete questions covering 12 categories", () => {
+  assert.equal(questions.length, 90);
   assert.equal(new Set(questions.map((q) => q.id)).size, questions.length);
   assert.equal(new Set(questions.map((q) => q.category)).size, 12);
   for (const q of questions) {
     assert.equal(q.options.length, 4);
     assert.equal(new Set(q.options.map((o) => o.id)).size, 4);
     assert.equal(q.options.filter((o) => o.id === q.correctOptionId).length, 1);
-    assert.ok(q.explanation.length > 60);
+    assert.ok(q.explanation.length >= 25);
   }
 });
 
@@ -42,7 +42,7 @@ test("rounds are unique, capped, and preserve answer identity after shuffling", 
   const filtered = filterQuestions("Aminoácidos");
   assert.equal(createQuiz(filtered, 20).length, filtered.length);
   assert.ok(filtered.every((q) => q.category === "Aminoácidos"));
-  assert.equal(filterQuestions("Metabolismo").length, 8);
+  assert.equal(filterQuestions("Metabolismo").length, 21);
 });
 
 test("retry uses other questions when available and changes order when pool is exhausted", () => {

@@ -18,7 +18,7 @@ async function completeRound(page: Page, correctCount: number, total = 10) {
         ? o.id === question.correctOptionId
         : o.id !== question.correctOptionId,
     )!;
-    await page.getByRole("radio", { name: option.text, exact: false }).check();
+    await page.locator(`[role="radio"][value="${option.id}"]`).check();
     await page.getByRole("button", { name: "Confirmar resposta" }).click();
     await expect(page.getByRole("status")).toContainText(
       index < correctCount ? "Resposta correta!" : "Resposta incorreta",
@@ -99,10 +99,10 @@ test("category and count limits, mobile layout, and exit confirmation", async ({
     ),
   ).toBe(true);
   await page.getByRole("button", { name: "Aminoácidos", exact: true }).click();
-  await expect(page.getByLabel("Número de questões")).toHaveValue("5");
+  await expect(page.getByLabel("Número de questões")).toHaveValue("10");
   await expect(
     page.getByLabel("Número de questões").locator("option"),
-  ).toHaveCount(1);
+  ).toHaveCount(2);
   await page.getByRole("button", { name: "Iniciar Quiz" }).click();
   await expect(page.locator("[data-slot=badge]")).toHaveText("Aminoácidos");
   await page.screenshot({
@@ -113,7 +113,7 @@ test("category and count limits, mobile layout, and exit confirmation", async ({
   await page.getByRole("button", { name: "Voltar ao início" }).click();
   await page.getByRole("button", { name: "Continuar quiz" }).click();
   await expect(page.locator("#question-title")).toBeVisible();
-  await completeRound(page, 0, 5);
+  await completeRound(page, 0, 10);
   await expect(
     page.getByRole("heading", { name: "Continue estudando" }),
   ).toBeVisible();
@@ -125,9 +125,9 @@ test("category and count limits, mobile layout, and exit confirmation", async ({
     .locator(".all-topics")
     .getByRole("button", { name: "Peptídeos" })
     .click();
-  await expect(page.getByLabel("Número de questões")).toHaveValue("2");
+  await expect(page.getByLabel("Número de questões")).toHaveValue("7");
   await page.getByRole("button", { name: "Iniciar Quiz" }).click();
-  await completeRound(page, 1, 2);
+  await completeRound(page, 4, 7);
   await expect(
     page.getByRole("heading", { name: "Bom progresso" }),
   ).toBeVisible();

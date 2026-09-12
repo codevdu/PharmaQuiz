@@ -1,6 +1,9 @@
 ﻿# BioQuiz
 
-Quiz de Bioquímica aplicada à Farmácia, feito com Next.js App Router, TypeScript, Tailwind CSS, componentes shadcn/ui baseados em Radix UI e ícones Lucide.
+Quiz de Bioquímica aplicada à Farmácia, feito com Next.js App Router, TypeScript, Tailwind CSS, componentes shadcn/ui.
+
+<img width="1517" height="782" alt="image" src="https://github.com/user-attachments/assets/2aa73f4b-9017-4600-abbe-da7a834df598" />
+
 
 ## Executar
 
